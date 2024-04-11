@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'debug_toolbar',
     #'django_extensions',
+    'core',
     'players',
 ]
 
@@ -131,3 +132,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #AUT_8USER_MODEL = 'core.User'
 
+AUTH_USER_MODEL = 'core.User'

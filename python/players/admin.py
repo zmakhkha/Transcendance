@@ -3,7 +3,11 @@ from .models import *
 
 
 # Register your models here.
-admin.site.register(Player)
+
+class PlayerAdmin(admin.ModelAdmin):
+	list_display = ['first_name', 'last_name', 'level']
+
+admin.site.register(Player, PlayerAdmin)
 admin.site.register(FriendshipRequest)
 admin.site.register(Friendship)
 admin.site.register(Item)

@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import F
+from django.conf import settings
+from django.contrib import admin
 # Create your models here.
 class Player(models.Model):
     STATUS_ONLINE = 'O'
@@ -15,15 +17,26 @@ class Player(models.Model):
         max_length=1, choices=STATUS_CHOICES, default=STATUS_OFFLINE)
     level = models.IntegerField(default=0)
     friends = models.ManyToManyField('self', through='Friendship', symmetrical=False)
-
-    firstname = models.CharField(max_length=32)
-    lastname = models.CharField(max_length=32)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # firstname = models.CharField(max_length=32)
+    # lastname = models.CharField(max_length=32)
     def get_friendships(self):
         friendships = Friendship.objects.filter(models.Q(player1=self) | models.Q(player2=self))
         return friendships
 	
-    def __str__(self) -> str:
-        return self.username
+    # def __str__(self) -> str:
+    #     return self.username
+    @admin.display(ordering='user__first_name')
+    def first_name(self):
+        return self.user.first_name
+
+    @admin.display(ordering='user__last_name')
+    def last_name(self):
+        return self.user.last_name
+    
+    def __str__(self):
+        return f"{self.username} : {self.user.first_name} {self.user.last_name}"
+
 
     class Meta:
         ordering = ['level']
