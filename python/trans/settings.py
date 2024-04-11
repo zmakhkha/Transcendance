@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'debug_toolbar',
+    'rest_framework',
+	'rest_framework.authtoken',
+    'djoser',
     #'django_extensions',
     'core',
     'players',
@@ -132,4 +134,29 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #AUT_8USER_MODEL = 'core.User'
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+	'DEFAULT_PERMISSION_CLASSES': [
+		'rest_framework.permissions.IsAuthenticated'
+    ]
+}
+
+
+ 
 AUTH_USER_MODEL = 'core.User'
+
+DJOSER = {
+	'SERIALIZERS': {
+		'user_create': 'core.serializers.UserCreateSearialiser'
+    }
+}
+
+from datetime import timedelta
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1)
+}
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyOTQ0NjcxLCJpYXQiOjE3MTI4NTgyNzEsImp0aSI6IjFkNzIwYjlmZTVlNTRjZjFhMTg2MmQ0NTIwYTk4ZGJmIiwidXNlcl9pZCI6Mn0.HrqrKGC8rQVnCWUNAcEUcZNnGwOCboWderHJhfvVRtk

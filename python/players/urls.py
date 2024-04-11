@@ -1,10 +1,11 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
 
-# URLConf
+# Create a router and register our viewsets with it.
+router = DefaultRouter()
+router.register('', views.PlayerViewSet)
 urlpatterns = [
-    path('', views.players_list),
-    path('<int:id>/', views.player_detail),
-    path('reqs/', views.reqs_list),
-	path('dashboard/<int:player_id>/', views.PlayerDashboard.as_view(), name='player_dashboard'),
+    # path('', views.players_list),
+    path('', include(router.urls)), 
 ]

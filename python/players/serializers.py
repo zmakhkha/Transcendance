@@ -3,9 +3,11 @@ from rest_framework import serializers
 
 
 class PlayerSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(read_only=True)
+    
     class Meta:
         model = Player
-        fields = ['id', 'username', 'coins', 'level', 'firstname' ,'lastname']
+        fields = ['id', 'user_id','username', 'coins', 'level', 'first_name' ,'last_name']
         
 class FriendshipRequestSerializer(serializers.ModelSerializer):
     class Meta:

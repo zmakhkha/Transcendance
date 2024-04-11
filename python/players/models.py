@@ -18,8 +18,6 @@ class Player(models.Model):
     level = models.IntegerField(default=0)
     friends = models.ManyToManyField('self', through='Friendship', symmetrical=False)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # firstname = models.CharField(max_length=32)
-    # lastname = models.CharField(max_length=32)
     def get_friendships(self):
         friendships = Friendship.objects.filter(models.Q(player1=self) | models.Q(player2=self))
         return friendships
