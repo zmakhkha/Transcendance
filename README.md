@@ -44,8 +44,6 @@ To set up the project locally, follow these steps:
 - **Log Management**: Elasticsearch, Logstash, Kibana (ELK Stack)
 - **Containerization**: Docker
 
-Sure! Here’s the updated section with the GitHub profiles embedded:
-
 ## Contributors
 
 - **Elmahdi Amghar**: [GitHub Profile](https://github.com/AMGHAR-ELMAHDI)
